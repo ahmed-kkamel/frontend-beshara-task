@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, Reorder } from 'framer-motion';
+import { motion, Reorder } from 'framer-motion';
 import Link from 'next/link';
 
 interface CartItem {
@@ -87,7 +87,7 @@ export default function Cart() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
-                      whileDrag={{ 
+                      whileDrag={{
                         scale: 1.03,
                         boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
                         cursor: "grabbing"

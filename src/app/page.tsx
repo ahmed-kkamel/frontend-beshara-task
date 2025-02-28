@@ -1,8 +1,10 @@
 
 
-import CategorySection from '@/components/CategorySection';
 import { getCategories, getCategoryProducts } from '@/services/categories';
 import { Suspense } from 'react';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import AnimatedHeader from '@/components/ui/AnimatedHeader';
+import AnimatedCategories from '@/components/AnimatedCategories';
 
 async function CategoriesContent() {
   try {
@@ -14,21 +16,14 @@ async function CategoriesContent() {
       }))
     );
 
-    return (
-      <div className="space-y-8">
-        {categoriesWithProducts.map((category) => (
-          <CategorySection
-            key={category.name}
-            category={category.name}
-            products={category.products}
-          />
-        ))}
-      </div>
-    );
+    return <AnimatedCategories categories={categoriesWithProducts} />;
   } catch (error) {
     return (
-      <div className="text-center text-red-600">
-        Failed to load products. Please try again later.
+      <div className="text-center py-12">
+        <div className="bg-red-50 p-6 rounded-xl shadow-sm">
+          <h3 className="text-red-600 text-xl font-semibold mb-2">Oops!</h3>
+          <p className="text-red-500">Failed to load products. Please try again later.</p>
+        </div>
       </div>
     );
   }
@@ -36,18 +31,12 @@ async function CategoriesContent() {
 
 export default async function Home() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container mx-auto px-4 py-24">
-        <h1 className="text-3xl font-bold mb-8 text-center">Welcome to Our Store</h1>
-        <Suspense
-          fallback={
-            <div className="text-center py-8">
-              <div className="animate-pulse text-lg text-gray-600">
-                Loading categories...
-              </div>
-            </div>
-          }
-        >
+        <AnimatedHeader>
+          Welcome to Our Store
+        </AnimatedHeader>
+        <Suspense fallback={<LoadingSpinner />}>
           <CategoriesContent />
         </Suspense>
       </div>

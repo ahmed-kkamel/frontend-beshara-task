@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Inter } from 'next/font/google';
 import NavbarLayout from '@/components/layout/NavbarLayout';
 import './globals.css';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,16 +13,16 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <NavbarLayout />
+      <body>
+        <NavbarLayout />
+        <Suspense fallback={<LoadingSpinner />}>
+          {children}
         </Suspense>
-        {children}
       </body>
     </html>
   );
