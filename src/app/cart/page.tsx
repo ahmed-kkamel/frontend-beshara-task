@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Reorder } from 'framer-motion';
 import Link from 'next/link';
 
 interface CartItem {
@@ -79,15 +79,20 @@ export default function Cart() {
           ) : (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
-                <AnimatePresence>
-                  {cartItems.map((item, index) => (
-                    <motion.div
+                <Reorder.Group axis="y" values={cartItems} onReorder={setCartItems}>
+                  {cartItems.map((item) => (
+                    <Reorder.Item
                       key={item.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -20 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="bg-white rounded-xl shadow-sm p-6 mb-4 hover:shadow-md transition-shadow"
+                      value={item}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      whileDrag={{ 
+                        scale: 1.03,
+                        boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
+                        cursor: "grabbing"
+                      }}
+                      className="bg-white rounded-xl shadow-sm p-6 mb-4 hover:shadow-md transition-shadow cursor-grab"
                     >
                       <div className="flex items-center gap-6">
                         <img src={item.image} alt={item.title} className="w-24 h-24 object-contain rounded-lg" />
@@ -120,9 +125,9 @@ export default function Cart() {
                           </button>
                         </div>
                       </div>
-                    </motion.div>
+                    </Reorder.Item>
                   ))}
-                </AnimatePresence>
+                </Reorder.Group>
               </div>
 
               <motion.div
