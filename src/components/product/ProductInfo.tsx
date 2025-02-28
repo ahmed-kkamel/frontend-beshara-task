@@ -10,9 +10,14 @@ interface ProductInfoProps {
   price: number;
   description: string;
   category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
 }
 
-export default function ProductInfo({ id, title, price, description, category }: ProductInfoProps) {
+export default function ProductInfo({ id, title, price, description, category, rating, image }: ProductInfoProps) {
   const router = useRouter();
 
   const handleAddToCart = () => {
@@ -23,17 +28,18 @@ export default function ProductInfo({ id, title, price, description, category }:
     }
 
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    cart.push({ id, title, price, description, category });
+    cart.push({ id, title, price, description, category, image });
     localStorage.setItem('cart', JSON.stringify(cart));
-    
+
+    window.dispatchEvent(new Event('cartUpdated'));
+
     toast.custom((t) => (
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
-        className={`${
-          t.visible ? 'animate-enter' : 'animate-leave'
-        } max-w-md w-full bg-white shadow-lg rounded-xl pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+        className={`${t.visible ? 'animate-enter' : 'animate-leave'
+          } max-w-md w-full bg-white shadow-lg rounded-xl pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
       >
         <div className="flex-1 w-0 p-4">
           <div className="flex items-start">
@@ -70,19 +76,77 @@ export default function ProductInfo({ id, title, price, description, category }:
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <h1 className="text-3xl font-bold mb-4">{title}</h1>
-      <p className="text-2xl font-semibold text-indigo-600 mb-4">${price}</p>
-      <p className="text-gray-600 mb-6">{description}</p>
-      <p className="text-gray-500 mb-6">Category: {category}</p>
+    <div className="space-y-6">
+      <div>
+        <p className="text-sm font-medium text-indigo-600 uppercase tracking-wider mb-2">
+          {category}
+        </p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">{title}</h1>
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center">
+            {[...Array(5)].map((_, i) => (
+              <svg
+                key={i}
+                className={`w-5 h-5 ${i < Math.floor(rating.rate)
+                  ? 'text-yellow-400'
+                  : 'text-gray-300'
+                  }`}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            ))}
+            <span className="ml-2 text-gray-600">({rating.rate})</span>
+          </div>
+          <span className="text-gray-500">|</span>
+          <span className="text-gray-600">{rating.count} reviews</span>
+        </div>
+      </div>
+
+      <div className="border-t border-b border-gray-200 py-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-3xl font-bold text-gray-900">${price}</p>
+            <p className="text-sm text-gray-500 mt-1">
+              Free shipping on orders over $100
+            </p>
+          </div>
+          <div className="bg-green-50 px-3 py-1 rounded-full">
+            <p className="text-green-700 text-sm font-medium">In Stock</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-medium text-gray-900 mb-4">Description</h3>
+        <div className="prose prose-indigo">
+          <p className="text-gray-600 leading-relaxed">{description}</p>
+        </div>
+      </div>
+
       <motion.button
         onClick={handleAddToCart}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-xl
-                 font-medium shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-all duration-300"
+        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 rounded-xl
+                 font-medium shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-all duration-300
+                 flex items-center justify-center space-x-2 cursor-pointer"
       >
-        Add to Cart
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+        <span>Add to Cart</span>
       </motion.button>
     </div>
   );

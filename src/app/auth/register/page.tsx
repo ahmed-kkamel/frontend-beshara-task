@@ -40,7 +40,6 @@ export default function Register() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      // In a real app, you would make an API call here
       localStorage.setItem('user', JSON.stringify(formData));
       router.push('/auth/login');
     }

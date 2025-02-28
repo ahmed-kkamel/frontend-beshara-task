@@ -10,6 +10,7 @@ interface CartItem {
   price: number;
   image: string;
   quantity: number;
+
 }
 
 export default function Cart() {
@@ -26,7 +27,10 @@ export default function Cart() {
       return [...acc, { ...item, quantity: 1 }];
     }, []);
     setCartItems(processedItems);
+    console.log(items, "items");
   }, []);
+
+
 
   const updateQuantity = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return;
@@ -66,7 +70,7 @@ export default function Cart() {
               className="text-center py-16 bg-white rounded-2xl shadow-sm"
             >
               <img
-                src="/empty-cart.svg"
+                src="/empty-cart.png"
                 alt="Empty Cart"
                 className="w-48 h-48 mx-auto mb-6 opacity-50"
               />
@@ -121,7 +125,7 @@ export default function Cart() {
                           <p className="text-lg font-bold">${(item.price * item.quantity).toFixed(2)}</p>
                           <button
                             onClick={() => removeItem(item.id)}
-                            className="text-red-500 hover:text-red-700 mt-2 text-sm"
+                            className="text-red-500 hover:text-red-700 mt-2 text-sm cursor-pointer"
                           >
                             Remove
                           </button>
@@ -157,9 +161,11 @@ export default function Cart() {
                       Add ${(100 - subtotal).toFixed(2)} more to get free shipping
                     </p>
                   )}
-                  <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg mt-6 hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02]">
-                    Proceed to Checkout
-                  </button>
+                  <Link href={"/checkout"} >
+                    <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg mt-6 hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02] cursor-pointer">
+                      Proceed to Checkout
+                    </button>
+                  </Link>
                 </div>
               </motion.div>
             </div>

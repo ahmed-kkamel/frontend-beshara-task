@@ -22,12 +22,12 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-gray-50">
       <div className="container mx-auto px-4 py-24">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="max-w-5xl mx-auto"
         >
-          <motion.h1 
+          <motion.h1
             initial={{ y: -20 }}
             animate={{ y: 0 }}
             className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
@@ -36,7 +36,7 @@ export default function Contact() {
           </motion.h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <motion.div 
+            <motion.div
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -49,7 +49,7 @@ export default function Contact() {
                   { name: 'email', label: 'Email', type: 'email' },
                   { name: 'subject', label: 'Subject', type: 'text' }
                 ].map((field, index) => (
-                  <motion.div 
+                  <motion.div
                     key={field.name}
                     initial={{ x: -30, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -65,7 +65,7 @@ export default function Contact() {
                     />
                   </motion.div>
                 ))}
-                
+
                 <motion.div
                   initial={{ x: -30, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
@@ -84,7 +84,7 @@ export default function Contact() {
                   type="submit"
                   className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-xl
                            font-medium shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 
-                           transform hover:scale-[1.02] transition-all duration-300"
+                           transform hover:scale-[1.02] transition-all duration-300 cursor-pointer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -93,7 +93,7 @@ export default function Contact() {
               </form>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
