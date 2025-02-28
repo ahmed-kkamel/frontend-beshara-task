@@ -35,12 +35,14 @@ export default function Cart() {
     );
     setCartItems(newItems);
     localStorage.setItem('cart', JSON.stringify(newItems));
+    window.dispatchEvent(new Event('cartUpdated'));
   };
 
   const removeItem = (id: number) => {
     const newItems = cartItems.filter(item => item.id !== id);
     setCartItems(newItems);
     localStorage.setItem('cart', JSON.stringify(newItems));
+    window.dispatchEvent(new Event('cartUpdated'));
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
