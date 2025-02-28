@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+@layer components {
+  .nav-link {
+    @apply text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors;
+  }
+
+  .mobile-nav-link {
+    @apply block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors;
+  }
+
+  .hamburger-line {
+    @apply absolute left-0 w-full h-0.5 bg-current transform transition-all duration-300;
+  }
+
+  .hamburger-line.top {
+    @apply top-0;
+  }
+
+  .hamburger-line.middle {
+    @apply top-1/2 -translate-y-1/2;
+  }
+
+  .hamburger-line.bottom {
+    @apply bottom-0;
+  }
+
+  .hamburger-line.top.open {
+    @apply top-1/2 -translate-y-1/2 rotate-45;
+  }
+
+  .hamburger-line.middle.open {
+    @apply opacity-0;
+  }
+
+  .hamburger-line.bottom.open {
+    @apply top-1/2 -translate-y-1/2 -rotate-45;
+  }
+}
