@@ -165,7 +165,7 @@ The application is fully responsive with tailored layouts for:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/frontend-beshara-task.git
+git clone https://github.com/ahmed-kkamel/frontend-beshara-task.git
 cd frontend-beshara-task
 ```
 
