@@ -1,6 +1,6 @@
 # E-Commerce Frontend BG-task
 
-## 📋 Overview
+## Overview
 
 This project is a modern, responsive e-commerce frontend application built with Next.js 15, TypeScript, and Tailwind CSS. It features a complete shopping experience with product browsing, cart management, checkout process, user authentication, and profile management.
 
@@ -13,7 +13,7 @@ The application demonstrates best practices in React development including:
 - Form validation
 - Local storage for persistent data
 
-## 🚀 Features
+## Features
 
 - **Product Catalog**
 
@@ -64,7 +64,7 @@ The application demonstrates best practices in React development including:
 - **Data Persistence**: Local Storage
 - **Notifications**: React Hot Toast
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 frontend-beshara-task/
