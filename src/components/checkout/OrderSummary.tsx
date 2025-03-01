@@ -8,11 +8,11 @@ interface OrderSummaryProps {
     total: number;
 }
 
-export default function OrderSummary({ cartItems, subtotal, shipping, total }: OrderSummaryProps) {
+export default function OrderSummary({ cartItems, subtotal, shipping, total }: Readonly<OrderSummaryProps>) {
     return (
-        <motion.div 
-            initial={{ opacity: 0, x: 20 }} 
-            animate={{ opacity: 1, x: 0 }} 
+        <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
             className="p-8 bg-white rounded-2xl shadow-lg h-full"
         >
             <h2 className="text-2xl font-semibold mb-6">Order Summary</h2>

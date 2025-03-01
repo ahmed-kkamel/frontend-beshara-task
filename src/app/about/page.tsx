@@ -1,6 +1,7 @@
 
 'use client';
 
+import AnimatedHeader from '@/components/ui/AnimatedHeader';
 import { motion } from 'framer-motion';
 
 export default function About() {
@@ -12,13 +13,7 @@ export default function About() {
           animate={{ opacity: 1 }}
           className="max-w-4xl mx-auto"
         >
-          <motion.h1
-            initial={{ y: -20 }}
-            animate={{ y: 0 }}
-            className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
-          >
-            About Us
-          </motion.h1>
+          <AnimatedHeader>About Us</AnimatedHeader>
 
           <motion.div
             initial={{ y: 20, opacity: 0 }}

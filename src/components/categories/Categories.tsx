@@ -44,7 +44,7 @@ export default function Categories({ categories }: Readonly<AnimatedCategoriesPr
             category={category.name}
             products={category.products.map(product => ({
               ...product,
-              description: product.description || ''
+              description: product.description ?? ''
             }))}
           />
         </motion.div>

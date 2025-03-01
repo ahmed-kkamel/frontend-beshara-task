@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useCheckout } from '@/hooks/useCheckout';
 import CheckoutForm from '@/components/checkout/CheckoutForm';
 import OrderSummary from '@/components/checkout/OrderSummary';
+import AnimatedHeader from '@/components/ui/AnimatedHeader';
 
 export default function Checkout() {
     const {
@@ -25,9 +26,8 @@ export default function Checkout() {
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-12"
                 >
-                    <h1 className="text-5xl font-bold mb-10 text-center bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                        Checkout
-                    </h1>
+
+                    <AnimatedHeader>Checkout</AnimatedHeader>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                         <CheckoutForm
                             formData={formData}

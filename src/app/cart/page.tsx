@@ -5,6 +5,7 @@ import { useCart } from '@/hooks/useCart';
 import EmptyCart from '@/components/cart/EmptyCart';
 import CartItem from '@/components/cart/CartItem';
 import CartSummary from '@/components/cart/CartSummary';
+import AnimatedHeader from '@/components/ui/AnimatedHeader';
 
 export default function Cart() {
   const {
@@ -25,8 +26,7 @@ export default function Cart() {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl font-bold mb-8 text-gray-800">Shopping Cart</h1>
-
+          <AnimatedHeader>Shopping Cart</AnimatedHeader>
           {cartItems.length === 0 ? (
             <EmptyCart />
           ) : (

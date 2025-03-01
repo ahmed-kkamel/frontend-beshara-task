@@ -41,7 +41,7 @@ export default function LoadingSpinner() {
                 >
                     {[...Array(4)].map((_, i) => (
                         <motion.div
-                            key={i}
+                            key={`loading-dot-${i + 1}`}
                             className="w-4 h-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600"
                             variants={dotVariants}
                         />

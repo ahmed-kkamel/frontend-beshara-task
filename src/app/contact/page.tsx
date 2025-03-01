@@ -5,6 +5,8 @@ import { useContactForm } from '@/hooks/useContactForm';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactInfo from '@/components/contact/ContactInfo';
 import { Toaster } from 'react-hot-toast';
+import AnimatedHeader from '@/components/ui/AnimatedHeader';
+
 
 export default function Contact() {
   const { formData, handleInputChange, handleSubmit } = useContactForm();
@@ -18,14 +20,7 @@ export default function Contact() {
           animate={{ opacity: 1 }}
           className="max-w-5xl mx-auto"
         >
-          <motion.h1
-            initial={{ y: -20 }}
-            animate={{ y: 0 }}
-            className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
-          >
-            Contact Us
-          </motion.h1>
-
+          <AnimatedHeader>Contact Us </AnimatedHeader>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <ContactForm
               formData={formData}

@@ -38,15 +38,6 @@
   }
 }
 
-/* input:invalid {
-  border-color: rgb(239, 68, 68);
-  outline-color: rgb(239, 68, 68);
-}
-
-input:invalid:focus {
-  ring-color: rgb(239, 68, 68);
-} */
-
 @keyframes shine {
   from {
     transform: translateX(-100%);

@@ -7,9 +7,9 @@ interface ContactFormProps {
   handleSubmit: (e: React.FormEvent) => void;
 }
 
-export default function ContactForm({ formData, handleInputChange, handleSubmit }: ContactFormProps) {
+export default function ContactForm({ formData, handleInputChange, handleSubmit }: Readonly<ContactFormProps>) {
   const inputClasses = "w-full px-4 py-3 border rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none transition-all duration-300";
-  
+
   const formFields = [
     { name: 'name', label: 'Name', type: 'text' },
     { name: 'email', label: 'Email', type: 'email' },

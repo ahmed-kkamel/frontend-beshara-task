@@ -7,7 +7,7 @@ interface CartSummaryProps {
   total: number;
 }
 
-export default function CartSummary({ subtotal, shipping, total }: CartSummaryProps) {
+export default function CartSummary({ subtotal, shipping, total }: Readonly<CartSummaryProps>) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

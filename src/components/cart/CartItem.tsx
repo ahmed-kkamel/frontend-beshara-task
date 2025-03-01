@@ -1,4 +1,4 @@
-import { motion, Reorder } from 'framer-motion';
+import { Reorder } from 'framer-motion';
 import Image from 'next/image';
 import { CartItem as CartItemType } from '@/hooks/useCart';
 
@@ -8,7 +8,7 @@ interface CartItemProps {
     removeItem: (id: number) => void;
 }
 
-export default function CartItem({ item, updateQuantity, removeItem }: CartItemProps) {
+export default function CartItem({ item, updateQuantity, removeItem }: Readonly<CartItemProps>) {
     return (
         <Reorder.Item
             key={item.id}

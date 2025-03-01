@@ -10,7 +10,7 @@ interface ProductCardProps {
   index: number;
 }
 
-export default function ProductCard({ id, title, price, image, index }: ProductCardProps) {
+export default function ProductCard({ id, title, price, image, index }: Readonly<ProductCardProps>) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}

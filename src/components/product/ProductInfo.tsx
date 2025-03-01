@@ -32,7 +32,7 @@ interface WishlistItem {
   };
 }
 
-export default function ProductInfo({ id, title, price, description, category, rating, image }: ProductInfoProps) {
+export default function ProductInfo({ id, title, price, description, category, rating, image }: Readonly<ProductInfoProps>) {
   const router = useRouter();
   const [isInWishlist, setIsInWishlist] = useState(false);
 
