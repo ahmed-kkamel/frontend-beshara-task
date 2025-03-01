@@ -12,6 +12,10 @@ export default function MobileMenu() {
 
   const menuItems = [
     { name: 'Home', path: '/' },
+    { name: 'Profile', path: '/profile' },
+    { name: 'Orders', path: '/orders' },
+    { name: 'Wishlist', path: '/wishlist' },
+    { name: 'Settings', path: '/settings' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
