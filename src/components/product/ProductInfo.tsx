@@ -20,6 +20,7 @@ interface ProductInfoProps {
 
 export default function ProductInfo({ id, title, price, description, category, rating, image }: ProductInfoProps) {
   const router = useRouter();
+
   const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
@@ -50,8 +51,67 @@ export default function ProductInfo({ id, title, price, description, category, r
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
   };
 
+
+
+  const handleAddToCart = () => {
+    const user = localStorage.getItem('currentUser');
+    if (!user) {
+      router.push('/auth/login');
+      return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cart.push({ id, title, price, description, category, image });
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    window.dispatchEvent(new Event('cartUpdated'));
+
+    toast.custom((t) => (
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        className={`${t.visible ? 'animate-enter' : 'animate-leave'
+          } max-w-md w-full bg-white shadow-lg rounded-xl pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="flex-shrink-0 pt-0.5">
+              <div className="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                <svg className="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            </div>
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-gray-900">
+                Added to Cart!
+              </p>
+              <p className="mt-1 text-sm text-gray-500">
+                {title}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex border-l border-gray-200">
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none"
+          >
+            Close
+          </button>
+        </div>
+      </motion.div>
+    ), {
+      duration: 3000,
+      position: 'bottom-right',
+    });
+  };
+
   return (
     <div className="space-y-6">
+
+
       <div className="flex justify-between items-start">
         <div>
           <p className="text-sm font-medium text-indigo-600 uppercase tracking-wider mb-2">
@@ -77,13 +137,12 @@ export default function ProductInfo({ id, title, price, description, category, r
             </div>
             <span className="text-gray-500">|</span>
             <span className="text-gray-600">{rating.count} reviews</span>
-          </div>
-        </div>
+          </div>        </div>
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleWishlist}
-          className={`p-2 rounded-full ${isInWishlist ? 'text-red-500' : 'text-gray-400'} 
+          className={`p-2 rounded-full cursor-pointer ${isInWishlist ? 'text-red-500' : 'text-gray-400'} 
                      hover:text-red-500 transition-colors`}
         >
           <svg className="w-6 h-6" fill={isInWishlist ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor">
@@ -92,6 +151,8 @@ export default function ProductInfo({ id, title, price, description, category, r
           </svg>
         </motion.button>
       </div>
+
+
       <div className="border-t border-b border-gray-200 py-6">
         <div className="flex items-center justify-between">
           <div>
@@ -112,6 +173,30 @@ export default function ProductInfo({ id, title, price, description, category, r
           <p className="text-gray-600 leading-relaxed">{description}</p>
         </div>
       </div>
+
+      <motion.button
+        onClick={handleAddToCart}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-4 rounded-xl
+                 font-medium shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-all duration-300
+                 flex items-center justify-center space-x-2 cursor-pointer"
+      >
+        <svg
+          className="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+          />
+        </svg>
+        <span>Add to Cart</span>
+      </motion.button>
     </div>
   );
 }

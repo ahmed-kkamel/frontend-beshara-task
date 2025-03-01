@@ -37,3 +37,12 @@
     @apply top-1/2 -translate-y-1/2 -rotate-45;
   }
 }
+
+/* input:invalid {
+  border-color: rgb(239, 68, 68);
+  outline-color: rgb(239, 68, 68);
+}
+
+input:invalid:focus {
+  ring-color: rgb(239, 68, 68);
+} */
