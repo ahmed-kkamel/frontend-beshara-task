@@ -18,11 +18,22 @@ async function CategoriesContent() {
 
     return <Categories categories={categoriesWithProducts} />;
   } catch (error) {
+    console.error('Failed to load categories:', error);
+
+    const errorMessage = error instanceof Error
+      ? error.message
+      : 'An unexpected error occurred';
+
     return (
       <div className="text-center py-12">
         <div className="bg-red-50 p-6 rounded-xl shadow-sm">
           <h3 className="text-red-600 text-xl font-semibold mb-2">Oops!</h3>
-          <p className="text-red-500">Failed to load products. Please try again later.</p>
+          <p className="text-red-500">
+            {process.env.NODE_ENV === 'development'
+              ? `Error: ${errorMessage}`
+              : 'Failed to load products. Please try again later.'
+            }
+          </p>
         </div>
       </div>
     );

@@ -3,11 +3,22 @@
 import { motion } from 'framer-motion';
 import { CategorySection } from './CategorySection';
 
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  description?: string;
+  category: string;
+}
+
+interface Category {
+  name: string;
+  products: Product[];
+}
+
 interface AnimatedCategoriesProps {
-  categories: Array<{
-    name: string;
-    products: Array<any>;
-  }>;
+  categories: Category[];
 }
 
 export default function Categories({ categories }: Readonly<AnimatedCategoriesProps>) {
@@ -31,7 +42,10 @@ export default function Categories({ categories }: Readonly<AnimatedCategoriesPr
         >
           <CategorySection
             category={category.name}
-            products={category.products}
+            products={category.products.map(product => ({
+              ...product,
+              description: product.description || ''
+            }))}
           />
         </motion.div>
       ))}

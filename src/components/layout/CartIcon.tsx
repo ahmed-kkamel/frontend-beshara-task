@@ -4,13 +4,20 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+interface CartItem {
+  id: number;
+  quantity: number;
+  price: number;
+  title: string;
+}
+
 export default function CartIcon() {
   const [itemCount, setItemCount] = useState(0);
 
   useEffect(() => {
     const updateCartCount = () => {
-      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      const totalItems = cart.reduce((sum: number, item: any) =>
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]') as CartItem[];
+      const totalItems = cart.reduce((sum: number, item: CartItem) =>
         sum + (item.quantity || 1), 0
       );
       setItemCount(totalItems);

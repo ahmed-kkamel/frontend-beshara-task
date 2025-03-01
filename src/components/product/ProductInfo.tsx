@@ -18,14 +18,27 @@ interface ProductInfoProps {
   };
 }
 
+// Add this interface after ProductInfoProps
+interface WishlistItem {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+}
+
 export default function ProductInfo({ id, title, price, description, category, rating, image }: ProductInfoProps) {
   const router = useRouter();
-
   const [isInWishlist, setIsInWishlist] = useState(false);
 
   useEffect(() => {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    setIsInWishlist(wishlist.some((item: any) => item.id === id));
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]') as WishlistItem[];
+    setIsInWishlist(wishlist.some((item: WishlistItem) => item.id === id));
   }, [id]);
 
   const handleWishlist = () => {
@@ -35,8 +48,8 @@ export default function ProductInfo({ id, title, price, description, category, r
       return;
     }
 
-    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    const itemIndex = wishlist.findIndex((item: any) => item.id === id);
+    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]') as WishlistItem[];
+    const itemIndex = wishlist.findIndex((item: WishlistItem) => item.id === id);
 
     if (itemIndex > -1) {
       wishlist.splice(itemIndex, 1);
