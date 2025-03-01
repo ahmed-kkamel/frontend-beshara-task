@@ -17,7 +17,7 @@ export default function Contact() {
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
-  const inputClasses = "w-full px-4 py-3 border-2 rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none focus:border-indigo-500 transition-all duration-300";
+  const inputClasses = "w-full px-4 py-3 border rounded-xl bg-white/50 backdrop-blur-sm focus:outline-none  transition-all duration-300";
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-gray-50">
