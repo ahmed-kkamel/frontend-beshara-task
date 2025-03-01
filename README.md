@@ -53,7 +53,7 @@ The application demonstrates best practices in React development including:
   - Responsive design for all devices
   - Toast notifications
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
