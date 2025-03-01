@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, Reorder } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface CartItem {
   id: number;
@@ -69,10 +70,12 @@ export default function Cart() {
               animate={{ opacity: 1 }}
               className="text-center py-16 bg-white rounded-2xl shadow-sm"
             >
-              <img
+              <Image
                 src="/empty-cart.png"
                 alt="Empty Cart"
                 className="w-48 h-48 mx-auto mb-6 opacity-50"
+                width={192}
+                height={192}
               />
               <h2 className="text-2xl text-gray-600 mb-4">Your cart is empty</h2>
               <Link
@@ -101,7 +104,7 @@ export default function Cart() {
                       className="bg-white rounded-xl shadow-sm p-6 mb-4 hover:shadow-md transition-shadow cursor-grab"
                     >
                       <div className="flex items-center gap-6">
-                        <img src={item.image} alt={item.title} className="w-24 h-24 object-contain rounded-lg" />
+                        <Image src={item.image} alt={item.title} className="w-24 h-24 object-contain rounded-lg" width={96} height={96} />
                         <div className="flex-grow">
                           <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
                           <p className="text-indigo-600 font-semibold mt-1">${item.price.toFixed(2)}</p>

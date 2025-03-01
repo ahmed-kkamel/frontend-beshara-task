@@ -1,21 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
 export default function Settings() {
-  const [user, setUser] = useState<any>(null);
+
   const router = useRouter();
 
-  useEffect(() => {
-    const userData = localStorage.getItem('currentUser');
-    if (!userData) {
-      router.push('/auth/login');
-      return;
-    }
-    setUser(JSON.parse(userData));
-  }, [router]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 pt-24">
@@ -26,7 +17,7 @@ export default function Settings() {
           className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8"
         >
           <h1 className="text-3xl font-bold text-gray-900 mb-8">Settings</h1>
-          
+
           <div className="space-y-8">
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Account Settings</h2>

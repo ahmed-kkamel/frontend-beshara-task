@@ -7,12 +7,12 @@ export default function About() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-gray-50">
       <div className="container mx-auto px-4 py-24">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="max-w-4xl mx-auto"
         >
-          <motion.h1 
+          <motion.h1
             initial={{ y: -20 }}
             animate={{ y: 0 }}
             className="text-5xl font-bold mb-16 text-center bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
@@ -20,7 +20,7 @@ export default function About() {
             About Us
           </motion.h1>
 
-          <motion.div 
+          <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -33,7 +33,7 @@ export default function About() {
                   <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Our Story</h2>
                   <p className="text-gray-600 leading-relaxed">
                     Welcome to our e-commerce store! We started with a simple mission: to provide high-quality products
-                    at competitive prices while delivering exceptional customer service. Since our founding, we've been
+                    at competitive prices while delivering exceptional customer service. Since our founding, we&apos;ve been
                     dedicated to curating a selection of products that meet our strict standards for quality and value.
                   </p>
                 </div>
@@ -49,7 +49,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
@@ -67,7 +67,7 @@ export default function About() {
                 transition={{ delay: stat.delay }}
                 className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow"
               >
-                <motion.div 
+                <motion.div
                   className="text-5xl font-bold mb-2 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
                   whileHover={{ scale: 1.1 }}
                 >

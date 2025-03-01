@@ -4,8 +4,14 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
+interface UserData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+}
 export default function Profile() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<UserData | null>(null);
   const router = useRouter();
 
   useEffect(() => {

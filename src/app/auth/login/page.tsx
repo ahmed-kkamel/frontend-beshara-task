@@ -29,7 +29,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -115,11 +115,11 @@ export default function Login() {
             transition={{ delay: 0.4 }}
             className="mt-6 text-center"
           >
-            <Link 
-              href="/auth/register" 
+            <Link
+              href="/auth/register"
               className="text-indigo-600 hover:text-indigo-800 font-medium transition-colors duration-200"
             >
-              Don't have an account? Register
+              Don&apos;t have an account? Register
             </Link>
           </motion.div>
         </div>

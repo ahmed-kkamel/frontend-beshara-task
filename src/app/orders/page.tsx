@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 interface OrderItem {
     id: number;
@@ -99,11 +100,13 @@ export default function Orders() {
                                         </div>
                                         <div className="space-y-4">
                                             {order.items.map((item) => (
-                                                <div key={item.id} className="flex items-center space-x-4">
-                                                    <img
+                                                <div key={item.id} className="flex items-center gap-4">
+                                                    <Image
                                                         src={item.image}
                                                         alt={item.title}
                                                         className="w-16 h-16 object-contain rounded-lg"
+                                                        width={64}
+                                                        height={64}
                                                     />
                                                     <div className="flex-1">
                                                         <h3 className="text-sm font-medium text-gray-900">{item.title}</h3>
