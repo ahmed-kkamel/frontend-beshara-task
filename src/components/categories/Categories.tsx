@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import CategorySection from './CategorySection';
+import { CategorySection } from './CategorySection';
 
 interface AnimatedCategoriesProps {
   categories: Array<{
@@ -10,20 +10,20 @@ interface AnimatedCategoriesProps {
   }>;
 }
 
-export default function AnimatedCategories({ categories }: AnimatedCategoriesProps) {
+export default function Categories({ categories }: Readonly<AnimatedCategoriesProps>) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="space-y-16"
+      className="flex flex-col gap-12"
     >
       {categories.map((category, index) => (
         <motion.div
           key={category.name}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ 
+          transition={{
             delay: index * 0.2,
             duration: 0.8,
             ease: [0.6, 0.05, 0.01, 0.9]

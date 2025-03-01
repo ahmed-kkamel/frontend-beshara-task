@@ -46,3 +46,16 @@
 input:invalid:focus {
   ring-color: rgb(239, 68, 68);
 } */
+
+@keyframes shine {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shine {
+  animation: shine 1s ease-in-out infinite;
+}

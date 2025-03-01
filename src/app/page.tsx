@@ -4,7 +4,7 @@ import { getCategories, getCategoryProducts } from '@/services/categories';
 import { Suspense } from 'react';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import AnimatedHeader from '@/components/ui/AnimatedHeader';
-import AnimatedCategories from '@/components/AnimatedCategories';
+import Categories from '@/components/categories/Categories';
 
 async function CategoriesContent() {
   try {
@@ -16,7 +16,7 @@ async function CategoriesContent() {
       }))
     );
 
-    return <AnimatedCategories categories={categoriesWithProducts} />;
+    return <Categories categories={categoriesWithProducts} />;
   } catch (error) {
     return (
       <div className="text-center py-12">
