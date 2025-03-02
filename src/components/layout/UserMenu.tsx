@@ -22,14 +22,28 @@ export default function UserMenu() {
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) setUser(JSON.parse(savedUser));
 
+    const handleAuthChange = () => {
+      const currentUser = localStorage.getItem('currentUser');
+      if (currentUser) {
+        setUser(JSON.parse(currentUser));
+      } else {
+        setUser(null);
+      }
+    };
+
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
 
+    window.addEventListener('authStateChanged', handleAuthChange);
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('authStateChanged', handleAuthChange);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -37,6 +51,7 @@ export default function UserMenu() {
     localStorage.removeItem('cart');
     setUser(null);
     window.dispatchEvent(new Event('cartUpdated'));
+    window.dispatchEvent(new Event('authStateChanged'));
     router.push('/auth/login');
   };
 

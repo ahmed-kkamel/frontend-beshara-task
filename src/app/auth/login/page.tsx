@@ -19,12 +19,28 @@ export default function Login() {
     if (savedUser) {
       const user = JSON.parse(savedUser);
       if (user.username === formData.username && user.password === formData.password) {
-        localStorage.setItem('currentUser', savedUser);
-        router.push('/');
-        return;
+        const userWithoutPassword = {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          username: user.username
+        };
+        localStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
+
+        setTimeout(() => {
+          const authEvent = new CustomEvent('authStateChanged', {
+            detail: { user: userWithoutPassword }
+          });
+          window.dispatchEvent(authEvent);
+          window.dispatchEvent(new Event('authStateChanged'));
+          router.push('/');
+        }, 10);
+      } else {
+        setError('Invalid username or password');
       }
+    } else {
+      setError('User not found. Please register first.');
     }
-    setError('Invalid username or password');
   };
 
   return (
